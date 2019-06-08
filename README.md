@@ -1,5 +1,7 @@
 # Learn.Node.CRUD01
 App CRUD to learn Angular + Node + Express + MySql
 
-Último commit aos 35 minutos
-Próxima tarefa: criar as rotas.
+https://www.youtube.com/watch?v=lxYB79ANJM8
+
+Último commit aos 41 minutos
+Próxima tarefa: morgan e cors

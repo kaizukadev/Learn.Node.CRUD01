@@ -18,7 +18,8 @@ class Server {
     }
 
     routes(): void {
-
+        this.app.use('/', indexRoutes);
+        this.app.use('/api/games', gamesRoutes);
     }
 
     start(): void {
