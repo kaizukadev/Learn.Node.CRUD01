@@ -1,4 +1,7 @@
 import express, { Application } from 'express';
+import morgan from 'morgan';
+import cors from 'cors';
+
 import indexRoutes from './routes/index.Routes';
 import gamesRoutes from './routes/games.Routes';
 
@@ -14,6 +17,9 @@ class Server {
 
     config(): void {
         this.app.set('port', process.env.PORT || 3000);
+        this.app.use(morgan('dev'));
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({extend: false}));
 
     }
 
@@ -24,7 +30,7 @@ class Server {
 
     start(): void {
         this.app.listen(this.app.get('port'), () => {
-            console.log('Server on port ', this.app.get('port'));
+            console.log('Servidor na porta', this.app.get('port'));
         });
 
     }

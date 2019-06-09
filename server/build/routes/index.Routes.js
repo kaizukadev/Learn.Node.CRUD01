@@ -7,7 +7,7 @@ class IndexRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', (req, res) => res.send('Hello! This is a message from Sérgio!'));
+        this.router.get('/', (req, res) => res.send('Hello! This is a message from Sérgio!<br>Gatcho ama a Gatcha!'));
     }
 }
 const indexRoutes = new IndexRoutes();
