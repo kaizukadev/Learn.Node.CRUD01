@@ -3,8 +3,8 @@ App CRUD to learn Angular + Node + Express + MySql
 
 https://www.youtube.com/watch?v=lxYB79ANJM8
 
-Último commit aos 45 minutos
-Próxima tarefa: database
+Último commit aos 01:05:00
+Próxima tarefa: NodeJS + MySQL
 
 
 Outros:

@@ -17,7 +17,7 @@ class Server {
         this.app.set('port', process.env.PORT || 3000);
         this.app.use(morgan_1.default('dev'));
         this.app.use(express_1.default.json());
-        this.app.use(express_1.default.urlencoded({ extend: false }));
+        this.app.use(express_1.default.urlencoded({ extended: false }));
     }
     routes() {
         this.app.use('/', index_Routes_1.default);
