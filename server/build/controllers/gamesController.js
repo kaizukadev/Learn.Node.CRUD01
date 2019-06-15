@@ -1,13 +1,21 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const database_1 = __importDefault(require("../database"));
 class GamesController {
-    index(req, res) {
-        database_1.default.query('DESCRIBE games');
-        res.send('Página de Games!');
+    list(req, res) {
+        //        pool.query('DESCRIBE games');
+        res.json({ text: 'Listando os  jogos ...' });
+    }
+    getById(req, res) {
+        res.json({ text: 'Obtendo o jogo [' + req.params.id + '] ...' });
+    }
+    create(req, res) {
+        res.json({ text: 'Criando um jogo ...' });
+    }
+    update(req, res) {
+        res.json({ text: 'Atualizando o jogo [' + req.params.id + '] ...' });
+    }
+    delete(req, res) {
+        res.json({ text: 'Excluindo o jogo [' + req.params.id + '] ...' });
     }
 }
 const gamesController = new GamesController();
