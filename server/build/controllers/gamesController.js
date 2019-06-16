@@ -1,21 +1,56 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const database_1 = __importDefault(require("../database"));
 class GamesController {
     list(req, res) {
-        //        pool.query('DESCRIBE games');
-        res.json({ text: 'Listando os  jogos ...' });
+        return __awaiter(this, void 0, void 0, function* () {
+            const games = yield database_1.default.query('SELECT * FROM games');
+            res.json(games);
+        });
     }
     getById(req, res) {
-        res.json({ text: 'Obtendo o jogo [' + req.params.id + '] ...' });
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const games = yield database_1.default.query('SELECT * FROM games WHERE id = ?', [id]);
+            if (games.length > 0) {
+                return res.json(games[0]);
+            }
+            res.status(404).json({ text: 'Jogo com código [' + id + '] não existe!' });
+        });
     }
     create(req, res) {
-        res.json({ text: 'Criando um jogo ...' });
+        return __awaiter(this, void 0, void 0, function* () {
+            yield database_1.default.query('INSERT INTO games SET ?', [req.body]);
+            res.json({ message: 'Jogo adicionado!' });
+        });
     }
-    update(req, res) {
+    update1(req, res) {
         res.json({ text: 'Atualizando o jogo [' + req.params.id + '] ...' });
     }
+    update(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield database_1.default.query('UPDATE games SET ? WHERE id = ?', [req.body, id]);
+            res.json({ message: 'O jogo com código [' + id + '] foi atualizado!' });
+        });
+    }
     delete(req, res) {
-        res.json({ text: 'Excluindo o jogo [' + req.params.id + '] ...' });
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield database_1.default.query('DELETE FROM games WHERE id = ?', [id]);
+            res.json({ message: 'O jogo com código [' + id + '] foi excluído!' });
+        });
     }
 }
 const gamesController = new GamesController();
